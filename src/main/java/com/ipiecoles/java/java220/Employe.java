@@ -2,10 +2,12 @@ package com.ipiecoles.java.java220;
 
 import org.joda.time.LocalDate;
 
+import java.util.Objects;
+
 /**
  * Created by pjvilloud on 21/09/17.
  */
-public class Employe {
+public abstract class Employe {
     private String nom;
     private String prenom;
     private String matricule;
@@ -78,4 +80,34 @@ public class Employe {
         {
             return Entreprise.NB_CONGES_BASE;
         }
+
+    @Override
+    public String toString() {
+        return "Employe{" +
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", matricule='" + matricule + '\'' +
+                ", dateEmbauche=" + dateEmbauche +
+                ", salaire=" + salaire +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employe)) return false;
+        Employe employe = (Employe) o;
+        return Objects.equals(getNom(), employe.getNom()) && Objects.equals(getPrenom(), employe.getPrenom()) && Objects.equals(getMatricule(), employe.getMatricule()) && Objects.equals(getDateEmbauche(), employe.getDateEmbauche()) && Objects.equals(getSalaire(), employe.getSalaire());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNom(), getPrenom(), getMatricule(), getDateEmbauche(), getSalaire());
+    }
+
+    public void  augmenterSalaire(Double prctAug)
+    {
+        this.salaire = getSalaire() * (1 + prctAug);
+    }
+
 }
