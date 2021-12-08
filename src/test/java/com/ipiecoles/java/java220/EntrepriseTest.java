@@ -842,6 +842,16 @@ public class EntrepriseTest {
 		Assertions.assertThat(TestUtils.callMethod(d, "salaireEquipeGrade1")).isEqualTo(1000.0);
 	}
 
+	@Test
+	public void exo105TestGetNbCongess() throws Exception {
+		//Développer une méthode getNbConges retournant la constante de classe NB_CONGES_BASE de la classe Entreprise
+
+		TestUtils.checkMethod("Cadre", "getNbConges", TestUtils.INTEGER);
+
+		Assertions.assertThat(TestUtils.callMethod(new Derived(), "getNbConges")).isEqualTo(26);
+
+	}
+
 	@AfterAll
 	public static void tearDown(){
 		DateTimeUtils.setCurrentMillisSystem();
